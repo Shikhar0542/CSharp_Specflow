@@ -1,0 +1,39 @@
+Feature: various simple operations
+Performing two operations just for practice
+by writing in the feature file
+
+@mytag
+Scenario: Add two numbers
+	Given to sort an array in aascending order
+	And to reverse the string
+  
+  *************************************************************************************************
+  
+  Feature: simple operations tables
+Here we are going to perform the various operations in which we include the tables
+We are performing on simple programs not selenium automation
+	
+
+@mytag
+Scenario: Performing the Average for three numbers
+	Given We will start the code
+	When Code will be written to give average
+	| number1 | number2 | number3 |
+	| 102.54  | 675.32  | 565.32  |
+	| 56.89   | 895.33  | 8.12    |
+	| 896.23  | 88.25   | 896.256 |
+	| 56.95   | 75.268  | 200.10  |
+	Then after output print a message
+
+@mytag
+Scenario Outline: Printing details of department by using tables:
+	Given We will print the department name:
+	When We will have this table and data is printed <Name>, <Position>, <Salary>, <EmployeeCode>
+	Then We print the message of bye bye
+Examples: 
+| Name           | Position         | Salary | EmployeeCode |
+| Rekha Singh    | Senior Manager   | 89000  | 606          |
+| Dinesh Singh   | Manager          | 67000  | 787          |
+| Rohit Verma    | Senior Engineer  | 456000 | 231          |
+| gaurav Krishna | Graduate Trainee | 32000  | 102          |
+
