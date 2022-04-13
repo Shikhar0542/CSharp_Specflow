@@ -1,0 +1,65 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using TechTalk.SpecFlow;
+using TechTalk.SpecFlow.Assist;
+
+namespace NunitSpecflow.Steps
+{
+    // We will use dynamic assist to read tables
+    [Binding]
+    public sealed class StepsSimpleTables
+    {
+       
+        [Given(@"We will start the code")]
+        public void GivenWeWillStartTheCode()
+        {
+            Console.WriteLine("The operation to do average starts from below");
+        }
+
+        [When(@"Code will be written to give average")]
+        public void WhenCodeWillBeWrittenToGiveAverage(Table table)
+        {
+            var x = table.CreateDynamicSet();
+            foreach(var d in x)
+            {
+                double avg;
+                avg = (d.number1 + d.number2 + d.number3) / 3;
+                Console.WriteLine("Average of set are= " + avg);
+            }
+        }
+
+        [Then(@"after output print a message")]
+        public void ThenAfterOutputPrintAMessage()
+        {
+            Console.WriteLine("The operation of average will end here");
+        }
+
+        //steps for the scenario outline example
+
+        [Given(@"We will print the department name:")]
+        public void GivenWeWillPrintTheDepartmentName()
+        {
+            Console.WriteLine("You are inside Service Department");
+        }
+
+        [When(@"We will have this table and data is printed (.*), (.*), (.*), (.*)")]
+        public void WhenWeWillHaveThisTableAndDataIsPrintedRekhaSinghSeniorManager(String n, String p, Int32 s, Int16 c)
+        {
+            Console.WriteLine("****************");
+            Console.WriteLine("Employee NAme: " + n);
+            Console.WriteLine("Position holding: " + p);
+            Console.WriteLine("Monthly Salary: " + s);
+            Console.WriteLine("Department Code of Employee: " + c);
+        }
+
+        [Then(@"We print the message of bye bye")]
+        public void ThenWePrintTheMessageOfByeBye()
+        {
+            Console.WriteLine("Good Bye! Have a Great Day");
+        }
+
+
+    }
+}
