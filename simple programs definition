@@ -1,0 +1,51 @@
+using System;
+using TechTalk.SpecFlow;
+
+namespace NunitSpecflow.Steps
+{
+    [Binding]
+    public sealed class ProgramsDefinition
+    {
+
+        [Given(@"to sort an array in aascending order")]
+        public void GivenToSortAnArrayInAascendingOrder()
+        {
+            int[] a = { 43, 65, 27, 97, 50 };
+            int s = a.Length;
+            int t=0;
+            for (int i = 0; i < (s - 1); i++)
+            {
+                int x = a[i];
+                for(int j=(i+1); j<s;j++)
+                {
+                    if(a[j]<x)
+                    {
+                        x = a[j];
+                       t = j;
+
+                    }
+                }
+                a[t] = a[i];
+                a[i] = x;
+            }
+            for(int i=0;i<s;i++)
+            {
+                Console.Write(a[i] + " ");
+            }
+        }
+
+        [Given(@"to reverse the string")]
+        public void GivenToReverseTheString()
+        {
+            String s = "This is Shikhar Singh";
+            string rs = "";
+            for(int i=(s.Length-1);i>=0; i--)
+            {
+                rs = rs + s[i];
+            }
+            Console.WriteLine("This is reversed string:  " + rs);
+
+        }
+
+    }
+}
