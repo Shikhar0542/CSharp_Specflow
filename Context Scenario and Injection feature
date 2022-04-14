@@ -1,0 +1,15 @@
+Feature: Contextscenario
+	Here we will perform the context scenario
+	And will perform the context injection
+
+@Context
+Scenario: Lets use simple scenario context and context injection
+	Given User will enter the marks of five subjects
+	And Average will be calculated
+	Then the percentage will be printed
+
+@ContextWithInjections
+Scenario: Lets use context injection here
+Given User will enter the ten values
+And Average will be calculated 
+And product will be also calculated of all
