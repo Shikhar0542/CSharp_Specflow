@@ -1,0 +1,94 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using TechTalk.SpecFlow;
+
+namespace NunitSpecflow.Steps
+{
+
+    [Binding]
+    public sealed class ContextSteps
+    {
+        //We implemented scenario context here
+
+        public readonly InjectionClass container;
+        public ContextSteps(InjectionClass container)
+        {
+            this.container = container;
+        }
+        [Given(@"User will enter the marks of five subjects")]
+        public void GivenUserWillEnterTheMarksOfFiveSubjects()
+        {
+            string s;
+            char a;
+           for(int i=0;i<5;i++)
+            {
+                Console.WriteLine("enter the marks");
+                object obj=Console.ReadLine();
+                s = "Number" + i;
+                ScenarioContext.Current.Add(s, obj);
+            }
+        }
+
+        [Given(@"Average will be calculated")]
+        [Scope(Tag ="Context")]
+        public void GivenAverageWillBeCalculated()
+        {
+            double sum = 0;
+            for (int i = 0; i < 5; i++)
+            {
+
+               sum =sum+ Convert.ToInt32((ScenarioContext.Current["Number" + i].ToString()));
+            }
+            double perc = (sum / 500) * 100;
+            object o = "Percentage of marks is: " + perc;
+            ScenarioContext.Current.Add("hi", o);
+        }
+
+        [Then(@"the percentage will be printed")]
+        public void ThenThePercentageWillBePrinted()
+        {
+            Console.WriteLine(ScenarioContext.Current["hi"].ToString());
+
+        }
+
+        //We implemented context injection here
+        [Given(@"User will enter the ten values")]
+        public void GivenUserWillEnterEnterTheValues()
+        {
+            for(int i=0;i<10;i++)
+            {
+                Console.WriteLine("Enter number into array");
+                int n = Convert.ToInt32(Console.ReadLine());
+                container.menu[i] = n;
+            }
+        }
+
+        [Given(@"Average will be calculated")]
+        [Scope(Tag = "ContextWithInjections")]
+        public void GivenAverageWillBeCalculated1()
+        {
+            double sum = 0.0;
+            for(int i=0; i<10; i++)
+            {
+                sum = sum + container.menu[i];
+            }
+            Console.WriteLine("Average= " + (sum / 10));
+        }
+
+        [Given(@"product will be also calculated of all")]
+        public void GivenProductWillBeAlsoCalculatedOfAll()
+        {
+            int prod = 1;
+            for (int i = 0; i < 10; i++)
+            {
+                prod = prod * container.menu[i];
+
+            }
+            Console.WriteLine("product= " +prod);
+        }
+
+
+    }
+}
